@@ -55,7 +55,7 @@ func (API) UniqueIndexes() map[string][]string {
 
 func (API) ForeignKeys() map[string]string {
 	return map[string]string{
-		"group_id":    "group(id)",
+		"group_id":    "`group`(id)",
 		"frontend_id": "api_frontend(id)",
 		"backend_id":  "api_backend(id)",
 		"result_id":   "api_result(id)",

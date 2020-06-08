@@ -15,7 +15,7 @@ type APIResult struct {
 	// 失败返回结果示例
 	ExampleFailed []byte `gorm:"column:example_failed;type:text"`
 	// 后端错误码说明
-	Errors []byte `gorm:"column:errors;type:text;not null"`
+	Errors []byte `gorm:"column:errors;type:text"`
 }
 
 func (APIResult) TableName() string {
