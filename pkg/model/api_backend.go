@@ -21,8 +21,8 @@ type APIBackend struct {
 	Model
 	Schema      int    `gorm:"column:schema;type:int;not null"`
 	Host        string `gorm:"column:host;type:char(60);not null"`
-	Port        int    `gorm:"column:port;type:int;not null;default -1"`
 	Path        string `grom:"column:path;type:char(60);not null"`
+	Method      string `gorm:"column:method;char(10);not null"`
 	Timeout     int64  `gorm:"column:timeout;type:int;not null"`
 	ConstParam  []byte `gorm:"column:const_param;type:text"`
 	SystemParam []byte `gorm:"column:system_param;type:text"`

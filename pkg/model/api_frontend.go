@@ -15,11 +15,11 @@ type APIFrontendParam struct {
 
 type APIFrontend struct {
 	Model
-	Schema int       `gorm:"column:schema;not null"`
-	Path   string    `grom:"column:path;type:char(60);not null"`
-	Method APIMethod `grom:"column:method;type:char(60);not null"`
-	Param  []byte    `gorm:"column:param;type:text"`
-	Body   []byte    `gorm:"column:body;type:text"`
+	Schema int    `gorm:"column:schema;not null"`
+	Path   string `grom:"column:path;type:char(60);not null"`
+	Method string `grom:"column:method;type:char(60);not null"`
+	Param  []byte `gorm:"column:param;type:text"`
+	Body   []byte `gorm:"column:body;type:text"`
 }
 
 func (APIFrontend) TableName() string {

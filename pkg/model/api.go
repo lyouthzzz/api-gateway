@@ -1,32 +1,25 @@
 package model
 
-import "net/http"
-
-type Schema uint32
+type APIStatus uint32
 
 const (
-	SchemaHttp = iota
-	SchemaHttps
-	SchemaMock
+	APIStatusOff APIStatus = 0 // 未发布
+	APIStatusOn  APIStatus = 1 // 发布
 )
 
-type APIMethod string
-
-const (
-	APIMethodGet  APIMethod = http.MethodGet
-	APIMethodPost APIMethod = http.MethodPost
-)
+type APIAuthStrategy uint32
 
 type API struct {
 	Model
 	Name string `gorm:"column:name;type:char(60);not null"`
 
-	Domain   string `gorm:"column:domain;type:char(60);not null"`
-	AuthType int    `grom:"column:auth_type:int;not null;default 0"`
-	QPS      int    `grom:"column:qps;type:int"`
+	Domain   string    `gorm:"column:domain;type:char(60);not null"`
+	AuthType int       `grom:"column:auth_type:int;not null;default 0"`
+	QPS      int64     `grom:"column:qps;type:int"`
+	Status   APIStatus `grom:"column:status;type:int"`
 
-	GroupName string `gorm:"column:group_name;char(60);not null"`
 	GroupID   uint32 `gorm:"column:group_id;type:int unsigned;not null"`
+	GroupName string `gorm:"column:group_name;char(60);not null"`
 
 	// 前端定义配置ID
 	FrontendID uint32 `gorm:"column:frontend_id;type:int unsigned;not null"`
