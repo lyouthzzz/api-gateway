@@ -10,12 +10,3 @@ type server struct {
 	debug bool
 	svc   *apiservice.Service
 }
-
-func NewServer() *server {
-	return &server{
-		host:  "",
-		port:  0,
-		debug: false,
-		svc:   nil,
-	}
-}

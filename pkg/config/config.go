@@ -5,7 +5,11 @@ import (
 )
 
 type Config struct {
-	Debug    bool `env:"DEBUG"`
+	Debug  bool `env:"DEBUG"`
+	Server struct {
+		Host string `env:"SERVER_HOST"`
+		Port int    `env:"SERVER_PORT"`
+	}
 	Database struct {
 		Host     string `env:"DB_HOST"`
 		Port     int    `env:"DB_PORT"`

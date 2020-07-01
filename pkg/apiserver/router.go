@@ -3,6 +3,8 @@ package apiserver
 import (
 	"github.com/DeanThompson/ginpprof"
 	"github.com/gin-gonic/gin"
+	"github.com/lyouthzzz/poseidon-api-gateway/pkg/log"
+	"github.com/lyouthzzz/poseidon-api-gateway/pkg/middleware"
 	"net/http"
 )
 
@@ -10,49 +12,52 @@ func (sv *server) BuildRouter() *gin.Engine {
 	router := gin.New()
 	ginpprof.Wrap(router)
 
+	router.Use(middleware.RequestId(), middleware.Logger(log.DefaultConf))
+
+	apiRouter := router.Group("/api")
 	// 项目
-	router.GET("/project/:id", func(c *gin.Context) {
+	apiRouter.GET("/project/:id", func(c *gin.Context) {
 		c.String(http.StatusOK, "get success")
 	})
-	router.POST("/project", func(c *gin.Context) {
+	apiRouter.POST("/project", func(c *gin.Context) {
 		c.String(http.StatusOK, "add success")
 	})
-	router.PUT("/project", func(c *gin.Context) {
+	apiRouter.PUT("/project", func(c *gin.Context) {
 		c.String(http.StatusOK, "edit success")
 	})
-	router.DELETE("/project/:id", func(c *gin.Context) {
+	apiRouter.DELETE("/project/:id", func(c *gin.Context) {
 		c.String(http.StatusOK, "delete success")
 	})
 
 	// 分组
-	router.GET("/group/:id", func(c *gin.Context) {
+	apiRouter.GET("/group/:id", func(c *gin.Context) {
 		c.String(http.StatusOK, "get success")
 	})
-	router.POST("/group", func(c *gin.Context) {
+	apiRouter.POST("/group", func(c *gin.Context) {
 		c.String(http.StatusOK, "add success")
 	})
-	router.PUT("/group", func(c *gin.Context) {
+	apiRouter.PUT("/group", func(c *gin.Context) {
 		c.String(http.StatusOK, "edit success")
 	})
-	router.DELETE("/group/:id", func(c *gin.Context) {
+	apiRouter.DELETE("/group/:id", func(c *gin.Context) {
 		c.String(http.StatusOK, "delete success")
 	})
 
 	// API
-	router.GET("/api/:id", func(c *gin.Context) {
+	apiRouter.GET("/api/:id", func(c *gin.Context) {
 		c.String(http.StatusOK, "get success")
 	})
-	router.POST("/api", func(c *gin.Context) {
+	apiRouter.POST("/api", func(c *gin.Context) {
 		c.String(http.StatusOK, "add success")
 	})
-	router.PUT("/api", func(c *gin.Context) {
+	apiRouter.PUT("/api", func(c *gin.Context) {
 		c.String(http.StatusOK, "edit success")
 	})
-	router.DELETE("/api/:id", func(c *gin.Context) {
+	apiRouter.DELETE("/api/:id", func(c *gin.Context) {
 		c.String(http.StatusOK, "delete success")
 	})
 
-	router.GET("/api/:id/export", func(c *gin.Context) {
+	apiRouter.GET("/api/:id/export", func(c *gin.Context) {
 		c.String(http.StatusOK, "export success default yaml extention")
 	})
 

@@ -6,16 +6,16 @@ import (
 	"strings"
 )
 
-const HeaderRequestId = "X-Request-Id"
+const HeaderRequestId = "P-Request-Id"
 
 func RequestId() gin.HandlerFunc {
-	return func(ctx *gin.Context) {
+	return func(c *gin.Context) {
 		var requestId string
-		if requestId = ctx.GetHeader(HeaderRequestId); requestId == "" {
+		if requestId = c.GetHeader(HeaderRequestId); requestId == "" {
 			requestId = strings.ReplaceAll(uuid.New().String(), "-", "")
 		}
-		ctx.Request.Header.Set(HeaderRequestId, requestId)
-		ctx.Set(HeaderRequestId, requestId)
-		ctx.Next()
+		c.Request.Header.Set(HeaderRequestId, requestId)
+		c.Set(HeaderRequestId, requestId)
+		c.Next()
 	}
 }
